@@ -11,7 +11,7 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#252a30 0%,#101215 42%,var(--bg) 78%);color:var(--cream);font-family:Arial,Helvetica,sans-serif}
 a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}
 nav{display:flex;align-items:center;justify-content:space-between;padding:24px 0;border-bottom:1px solid var(--line);gap:20px}
-.logo{font-weight:900;letter-spacing:.18em;font-size:18px}.logo span{background:var(--chrome);background-clip:text;-webkit-background-clip:text;color:transparent}.navlinks{display:flex;gap:24px;font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.menu-toggle{display:none;background:transparent;color:var(--cream);border:1px solid var(--line);padding:9px 11px;font-size:18px}.logo{font-weight:900;letter-spacing:.18em;font-size:18px}.logo span{background:var(--chrome);background-clip:text;-webkit-background-clip:text;color:transparent}.navlinks{display:flex;gap:24px;font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
 .hero{min-height:520px;display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;padding:70px 0}
 .kicker{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#dce2e7;font-weight:bold}
 h1{font-size:clamp(48px,8vw,100px);line-height:.86;letter-spacing:-.07em;margin:20px 0 26px;font-weight:900}
@@ -30,12 +30,30 @@ audio{width:100%;height:34px;margin:18px 0 8px;filter:grayscale(1)}.beatfoot{dis
 .licenses{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.license{padding:24px;border:1px solid var(--line);background:linear-gradient(145deg,#191d21,#101215 75%);display:flex;flex-direction:column;min-height:280px}.license.featured{border-color:#dce2e7;box-shadow:inset 0 0 0 1px #dce2e71a}.license h3{font-size:18px;margin:14px 0 8px}.license .cost{font-size:32px;font-weight:900;margin:10px 0}.license ul{padding-left:18px;color:var(--muted);font-size:12px;line-height:1.9;margin-bottom:24px}.license .btn{margin-top:auto}
 .about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}.quote{font-size:clamp(24px,3vw,38px);line-height:1.15;letter-spacing:-.04em}.quote span{color:#dce2e7}.contactbox{background:var(--chrome);color:#090a0c;padding:28px}.contactbox p{line-height:1.7;color:#343a40;font-size:13px}.contactbox .btn{background:#090a0c;color:#f0f2f4;border-color:#090a0c}.contactbox .btn:hover{background:transparent;color:#090a0c}
 footer{padding:28px 0;color:var(--muted);font-size:10px;letter-spacing:.1em;text-transform:uppercase;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
-@media(max-width:760px){.navlinks{gap:12px;font-size:10px}.hero{grid-template-columns:1fr;padding:52px 0;min-height:auto}.art{max-height:300px;aspect-ratio:16/9}.beats,.licenses{grid-template-columns:1fr}.about{grid-template-columns:1fr}.sectionhead{align-items:start;flex-direction:column}.wrap{width:min(100% - 28px,1120px)}}
+@media(max-width:760px){.menu-toggle{display:block}.navlinks{display:none;position:absolute;z-index:5;top:68px;left:14px;right:14px;padding:18px;background:#111418;border:1px solid var(--line);flex-direction:column;gap:18px}.navlinks.open{display:flex}.navlinks{gap:12px;font-size:10px}.hero{grid-template-columns:1fr;padding:52px 0;min-height:auto}.art{max-height:300px;aspect-ratio:16/9}.beats,.licenses{grid-template-columns:1fr}.about{grid-template-columns:1fr}.sectionhead{align-items:start;flex-direction:column}.wrap{width:min(100% - 28px,1120px)}}
+
+/* INTERACTIONS */
+.beat,.license,.art{transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease}
+.beat:hover,.license:hover{transform:translateY(-5px);border-color:#aeb8c1;box-shadow:0 18px 40px #0006}
+.art{transition:filter .4s ease,transform .6s ease}.art:hover{filter:contrast(1.15) brightness(1.12);transform:perspective(900px) rotateY(-3deg)}
+.beat-tools{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:0 0 22px}
+.beat-search,.genre-filter{background:#101215;color:#f0f2f4;border:1px solid #454d55;padding:13px 14px;font:inherit;font-size:12px;outline:none}
+.beat-search{flex:1;min-width:180px}.beat-search:focus,.genre-filter:focus{border-color:#e7edf2;box-shadow:0 0 0 2px #dce2e71a}
+.filter-chip{border:1px solid #454d55;background:transparent;color:#c2c9cf;padding:11px 13px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.filter-chip[aria-pressed="true"]{background:var(--chrome);color:#090a0c;border-color:#dbe1e6}
+.beat-tools-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);width:100%}
+.beattop{position:relative}.fav{margin-left:auto;align-self:flex-start;background:transparent;border:1px solid #454d55;color:#cbd2d8;width:34px;height:34px;border-radius:50%;font-size:17px;cursor:pointer;transition:.2s}.fav.active{background:var(--chrome);color:#090a0c;border-color:#fff}
+.beat.playing{border-color:#e5ebef;box-shadow:0 0 0 1px #e5ebef22,0 16px 35px #0005}
+.beat.playing .cover{animation:chromePulse 1.8s ease-in-out infinite alternate}
+@keyframes chromePulse{from{filter:brightness(.82)}to{filter:brightness(1.25)}}
+.empty-state{display:none;padding:28px;border:1px dashed #454d55;color:var(--muted);text-align:center;font-size:13px}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 <header class="wrap">
-<nav><a class="logo" href="#">LE SROUL<span>®</span></a><div class="navlinks"><a href="#beats">Beats</a><a href="#licences">Licences</a><a href="#contact">Contact</a></div></nav>
+<nav><a class="logo" href="#">LE SROUL<span>®</span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-label="Ouvrir le menu">☰</button><div class="navlinks"><a href="#beats">Beats</a><a href="#licences">Licences</a><a href="#contact">Contact</a></div></nav>
 </header>
 <main>
 <div class="wrap hero">
@@ -45,12 +63,18 @@ footer{padding:28px 0;color:var(--muted);font-size:10px;letter-spacing:.1em;text
 <div class="art" aria-label="Visuel abstrait monochrome"><div class="artlabel"><span>Le Sroul / Instrumentals</span><span>Vol. 001</span></div></div>
 </div>
 
-<section id="beats"><div class="wrap"><div class="sectionhead"><div><div class="kicker">Sélection</div><h2>Les instrumentales</h2></div><p class="small">Remplace les titres, prix et fichiers audio<br>par tes propres instrumentales.</p></div>
+<section id="beats"><div class="wrap"><div class="sectionhead"><div><div class="kicker">Sélection</div><h2>Les instrumentales</h2></div><p class="small">Recherche, filtre par style et garde tes favoris.<br>Les extraits audio seront actifs dès l’ajout des fichiers.</p></div>
+<div class="beat-tools" aria-label="Filtres des instrumentales">
+<input id="beatSearch" class="beat-search" type="search" placeholder="Rechercher une instrumentale…" aria-label="Rechercher une instrumentale">
+<select id="genreFilter" class="genre-filter" aria-label="Filtrer par genre"><option value="all">Tous les styles</option><option value="trap">Trap</option><option value="boombap">Boom Bap</option></select>
+<button id="favoritesOnly" class="filter-chip" type="button" aria-pressed="false">♡ Favoris uniquement</button>
+<button id="resetFilters" class="filter-chip" type="button">Réinitialiser</button>
+</div>
 <div class="beats">
-<article class="beat"><div class="beattop"><div class="cover">01</div><div><h3>NÉANT</h3><div class="meta">TRAP · 140 BPM · MINOR</div></div></div><audio controls preload="none"><source src="audio/beat-01.mp3" type="audio/mpeg">Ton navigateur ne prend pas en charge l'audio.</audio><div class="beatfoot"><span class="price">À partir de 20 €</span><a class="textlink" href="https://www.instagram.com/le_sroul_beatmaker/" target="_blank" rel="noopener">Commander par DM ↗</a></div></article>
-<article class="beat"><div class="beattop"><div class="cover">02</div><div><h3>ANGLE MORT</h3><div class="meta">TRAP BOOMBAP · 92 BPM</div></div></div><audio controls preload="none"><source src="audio/beat-02.mp3" type="audio/mpeg">Ton navigateur ne prend pas en charge l'audio.</audio><div class="beatfoot"><span class="price">À partir de 20 €</span><a class="textlink" href="https://www.instagram.com/le_sroul_beatmaker/" target="_blank" rel="noopener">Commander par DM ↗</a></div></article>
-<article class="beat"><div class="beattop"><div class="cover">03</div><div><h3>HORS-CHAMP</h3><div class="meta">BOOMBAP · 86 BPM</div></div></div><audio controls preload="none"><source src="audio/beat-03.mp3" type="audio/mpeg">Ton navigateur ne prend pas en charge l'audio.</audio><div class="beatfoot"><span class="price">À partir de 20 €</span><a class="textlink" href="https://www.instagram.com/le_sroul_beatmaker/" target="_blank" rel="noopener">Commander par DM ↗</a></div></article>
-</div></div></section>
+<article class="beat reveal" data-title="neant" data-genre="trap"><div class="beattop"><div class="cover">01</div><div><h3>NÉANT</h3><div class="meta">TRAP · 140 BPM · MINOR</div></div><button class="fav" type="button" aria-label="Ajouter NEANT aux favoris" aria-pressed="false">♡</button></div><audio controls preload="none"><source src="audio/beat-01.mp3" type="audio/mpeg">Ton navigateur ne prend pas en charge l'audio.</audio><div class="beatfoot"><span class="price">À partir de 20 €</span><a class="textlink" href="https://www.instagram.com/le_sroul_beatmaker/" target="_blank" rel="noopener">Commander par DM ↗</a></div></article>
+<article class="beat reveal" data-title="angle mort" data-genre="trap boombap"><div class="beattop"><div class="cover">02</div><div><h3>ANGLE MORT</h3><div class="meta">TRAP BOOMBAP · 92 BPM</div></div><button class="fav" type="button" aria-label="Ajouter ANGLE MORT aux favoris" aria-pressed="false">♡</button></div><audio controls preload="none"><source src="audio/beat-02.mp3" type="audio/mpeg">Ton navigateur ne prend pas en charge l'audio.</audio><div class="beatfoot"><span class="price">À partir de 20 €</span><a class="textlink" href="https://www.instagram.com/le_sroul_beatmaker/" target="_blank" rel="noopener">Commander par DM ↗</a></div></article>
+<article class="beat reveal" data-title="hors champ" data-genre="boombap"><div class="beattop"><div class="cover">03</div><div><h3>HORS-CHAMP</h3><div class="meta">BOOMBAP · 86 BPM</div></div><button class="fav" type="button" aria-label="Ajouter HORS-CHAMP aux favoris" aria-pressed="false">♡</button></div><audio controls preload="none"><source src="audio/beat-03.mp3" type="audio/mpeg">Ton navigateur ne prend pas en charge l'audio.</audio><div class="beatfoot"><span class="price">À partir de 20 €</span><a class="textlink" href="https://www.instagram.com/le_sroul_beatmaker/" target="_blank" rel="noopener">Commander par DM ↗</a></div></article>
+</div><div id="emptyState" class="empty-state">Aucune instrumentale ne correspond à ta recherche.</div><p id="beatCount" class="small" aria-live="polite">3 instrumentales affichées</p></div></section>
 
 <section id="licences"><div class="wrap"><div class="sectionhead"><div><div class="kicker">Choisis ton usage</div><h2>Licences</h2></div><p class="small">Tarifs indicatifs à personnaliser.<br>Commande directe, sans commission de plateforme. Paiement et livraison convenus ensemble.</p></div>
 <div class="licenses">
@@ -64,4 +88,79 @@ footer{padding:28px 0;color:var(--muted);font-size:10px;letter-spacing:.1em;text
 <section id="contact"><div class="wrap about"><div><div class="kicker">On construit le morceau ?</div><h2>Parlons musique.</h2><p class="small">Pour commander une licence classique, négocier une exclusivité ou demander une production sur mesure, contacte-moi directement sur Instagram. Paiement convenu en direct : pas de panier ni de paiement automatisé sur le site.</p></div><div class="contactbox"><h3>LE SROUL — CONTACT</h3><p>Instagram : @le_sroul_beatmaker<br>Commandes MP3 / WAV et demandes d’exclusivité par message privé.</p><div class="actions"><a class="btn" href="https://www.instagram.com/le_sroul_beatmaker/" target="_blank" rel="noopener">Instagram ↗</a><a class="btn" href="https://www.instagram.com/le_sroul_beatmaker/" target="_blank" rel="noopener">Commander par DM ↗</a></div></div></div></section>
 </main>
 <footer class="wrap"><span>© LE SROUL — 2026</span><span>Trap / Boom Bap · Montpellier</span><a href="#contact">Contact</a></footer>
+<script>
+(function(){
+  const cards=[...document.querySelectorAll('.beat')];
+  const search=document.getElementById('beatSearch');
+  const genre=document.getElementById('genreFilter');
+  const favOnly=document.getElementById('favoritesOnly');
+  const reset=document.getElementById('resetFilters');
+  const empty=document.getElementById('emptyState');
+  const count=document.getElementById('beatCount');
+  const favorites=new Set();
+  let onlyFavorites=false;
+  function applyFilters(){
+    const q=(search.value||'').trim().toLowerCase();
+    const g=genre.value;
+    let shown=0;
+    cards.forEach(card=>{
+      const matchesText=(card.dataset.title+' '+card.textContent).toLowerCase().includes(q);
+      const matchesGenre=g==='all'||card.dataset.genre.split(' ').includes(g);
+      const matchesFav=!onlyFavorites||favorites.has(card.dataset.title);
+      const visible=matchesText&&matchesGenre&&matchesFav;
+      card.hidden=!visible;
+      if(visible) shown++;
+    });
+    empty.style.display=shown?'none':'block';
+    count.textContent=shown+' instrumentale'+(shown>1?'s':'')+' affichée'+(shown>1?'s':'');
+  }
+  search.addEventListener('input',applyFilters);
+  genre.addEventListener('change',applyFilters);
+  favOnly.addEventListener('click',()=>{
+    onlyFavorites=!onlyFavorites;
+    favOnly.setAttribute('aria-pressed',String(onlyFavorites));
+    favOnly.textContent=onlyFavorites?'♥ Voir tout':'♡ Favoris uniquement';
+    applyFilters();
+  });
+  reset.addEventListener('click',()=>{
+    search.value='';genre.value='all';onlyFavorites=false;
+    favOnly.setAttribute('aria-pressed','false');favOnly.textContent='♡ Favoris uniquement';
+    applyFilters();
+  });
+  document.querySelectorAll('.fav').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const card=btn.closest('.beat'),key=card.dataset.title;
+      if(favorites.has(key)){favorites.delete(key);btn.classList.remove('active');btn.textContent='♡';btn.setAttribute('aria-pressed','false');}
+      else{favorites.add(key);btn.classList.add('active');btn.textContent='♥';btn.setAttribute('aria-pressed','true');}
+      applyFilters();
+    });
+  });
+  const audios=[...document.querySelectorAll('audio')];
+  audios.forEach(audio=>{
+    audio.addEventListener('play',()=>{
+      audios.forEach(other=>{if(other!==audio)other.pause();});
+      cards.forEach(card=>card.classList.remove('playing'));
+      audio.closest('.beat').classList.add('playing');
+    });
+    audio.addEventListener('pause',()=>audio.closest('.beat').classList.remove('playing'));
+    audio.addEventListener('ended',()=>audio.closest('.beat').classList.remove('playing'));
+  });
+  const toggle=document.querySelector('.menu-toggle'),links=document.querySelector('.navlinks');
+  toggle.addEventListener('click',()=>{
+    const open=links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded',String(open));toggle.textContent=open?'×':'☰';
+  });
+  links.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
+    links.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.textContent='☰';
+  }));
+  const revealObserver=('IntersectionObserver' in window)?new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target);}});
+  },{threshold:.12}):null;
+  document.querySelectorAll('.reveal,.license').forEach(el=>{
+    el.classList.add('reveal');
+    if(revealObserver)revealObserver.observe(el);else el.classList.add('visible');
+  });
+  applyFilters();
+})();
+</script>
 </body></html>
