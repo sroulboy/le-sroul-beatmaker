@@ -114,6 +114,15 @@ body{padding-bottom:96px}
 .carousel-arrow{border-radius:50%;width:42px;height:42px;background:#17191bcc;border-color:#ffffff35}
 @media(max-width:760px){.beats .beat{flex-basis:min(82vw,320px);padding:12px}.beats .cover{border-radius:9px}.beats .beat h3{font-size:21px}}
 
+
+/* FIX AFFICHAGE CARROUSEL SUR MOBILE : les cartes ne doivent jamais rester invisibles */
+#beatCarousel .beat,
+#beatCarousel .beat.reveal,
+#beatCarousel .beat.reveal.visible{opacity:1!important;visibility:visible!important;transform:none!important}
+#beatCarousel .beat[hidden]{display:none!important}
+#beatCarousel{min-height:220px}
+#beatCarousel .cover{min-height:180px}
+@media(max-width:760px){#beatCarousel .beat{flex-basis:min(82vw,320px)}}
 </style>
 </head>
 <body>
