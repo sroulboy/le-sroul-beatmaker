@@ -88,6 +88,32 @@ body{padding-bottom:96px}
 .stream-volume{width:80px;accent-color:#e3e8ec}
 .beat[hidden]{display:none!important}
 @media(max-width:680px){body{padding-bottom:104px}.stream-player{padding:10px 12px calc(10px + env(safe-area-inset-bottom))}.stream-inner{grid-template-columns:minmax(0,1fr) auto;gap:8px 12px}.stream-track{gap:9px}.stream-art{width:42px;height:42px;font-size:13px}.stream-track-info strong{font-size:11px}.stream-track-info span{font-size:9px}.stream-controls{grid-column:2;grid-row:1;grid-template-columns:28px 36px 28px;gap:4px}.stream-controls .stream-main-play{width:34px;height:34px}.stream-seek{grid-column:1/-1;grid-row:2}.stream-actions{display:none}}
+
+/* CARROUSEL — cartes éditoriales inspirées des players musicaux */
+.beats{gap:18px;padding:8px 4px 22px;scroll-padding-left:4px}
+.beats .beat{flex:0 0 290px;padding:14px;border:1px solid #ffffff24;border-radius:18px;background:linear-gradient(160deg,rgba(34,37,39,.94),rgba(5,6,7,.97) 72%);box-shadow:0 16px 40px #0005;overflow:hidden}
+.beats .beat:hover{transform:translateY(-4px);border-color:#ffffff55;box-shadow:0 22px 48px #0008}
+.beattop{display:flex;flex-direction:column;align-items:stretch;gap:0;position:relative}
+.beats .cover{width:100%;aspect-ratio:1/1;height:auto;display:flex;align-items:flex-end;justify-content:flex-start;padding:18px;font-size:32px;letter-spacing:-.06em;color:#f2f2f2;background:radial-gradient(ellipse at 70% 22%,#87939b 0%,#42494f 18%,#171a1d 47%,#050607 78%);border-radius:10px;position:relative;overflow:hidden;border:1px solid #ffffff18}
+.beats .cover:before,.beats .cover:after{content:"";position:absolute;pointer-events:none}
+.beats .cover:before{inset:0;background:linear-gradient(145deg,transparent 25%,rgba(0,0,0,.15) 45%,rgba(0,0,0,.85) 100%),repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.025) 4px)}
+.beats .cover:after{width:65%;height:85%;left:18%;top:8%;border:1px solid #ffffff50;border-radius:48% 52% 40% 60%;transform:rotate(-25deg);box-shadow:0 0 25px #dbe2e922,inset 0 0 22px #dbe2e918}
+.beats .beat:nth-child(2) .cover{background:radial-gradient(ellipse at 30% 35%,#a0a5a7 0%,#555a5e 18%,#202326 48%,#050607 80%)}
+.beats .beat:nth-child(3) .cover{background:radial-gradient(ellipse at 72% 65%,#777d83 0%,#363a3e 24%,#16181a 52%,#050607 82%)}
+.beats .beattop>div:nth-child(2){padding:18px 2px 0;min-width:0}
+.beats .beat h3{font-size:22px;letter-spacing:-.04em;margin:0 0 8px}
+.beats .meta{font-size:10px;letter-spacing:.12em}
+.beats .fav{position:absolute;right:10px;top:10px;z-index:2;background:#050607a8;border-color:#ffffff45;color:#fff}
+.beats .audio-player{margin:18px 0 14px;grid-template-columns:42px 1fr}
+.beats .play-button{border-radius:50%;box-shadow:0 2px 12px #0005}
+.beats .beatfoot{padding-top:13px;border-top:1px solid #ffffff20}
+.beats .price{font-size:12px}
+.beats .textlink{border:1px solid #ffffff35;border-radius:20px;padding:6px 9px;font-size:9px}
+.beats .beat-details{margin-top:16px}
+.beat-carousel-controls{gap:10px;margin:0 0 10px}
+.carousel-arrow{border-radius:50%;width:42px;height:42px;background:#17191bcc;border-color:#ffffff35}
+@media(max-width:760px){.beats .beat{flex-basis:min(82vw,320px);padding:12px}.beats .cover{border-radius:9px}.beats .beat h3{font-size:21px}}
+
 </style>
 </head>
 <body>
