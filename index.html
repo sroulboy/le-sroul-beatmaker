@@ -245,7 +245,7 @@ body{padding-bottom:96px}
 <footer class="wrap"><span>© LE SROUL — 2026</span><span>Trap / Boom Bap · Montpellier</span><a href="#contact">Contact</a></footer>
 <div class="stream-player" role="region" aria-label="Lecteur audio Le Sroul">
  <div class="stream-inner">
-  <div class="stream-track"><div class="stream-art" id="streamArt" aria-label="Logo Le Sroul"><svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="lsGlassEdge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#dceaff"/><stop offset=".23" stop-color="#253a70"/><stop offset=".48" stop-color="#f8fbff"/><stop offset=".67" stop-color="#ed91bc"/><stop offset=".83" stop-color="#62cfff"/><stop offset="1" stop-color="#b6c8ff"/></linearGradient><linearGradient id="lsGlassFace" x1="0" y1="0" x2=".85" y2="1"><stop offset="0" stop-color="#111725"/><stop offset=".45" stop-color="#03050a"/><stop offset="1" stop-color="#090c16"/></linearGradient><linearGradient id="lsSilver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#bfcde5"/><stop offset=".62" stop-color="#fff"/><stop offset="1" stop-color="#7e91b5"/></linearGradient></defs><rect x="5" y="5" width="90" height="90" rx="19" fill="url(#lsGlassFace)" stroke="url(#lsGlassEdge)" stroke-width="3"/><rect x="9" y="9" width="82" height="82" rx="15" fill="none" stroke="#ffffff55" stroke-width=".7"/><path d="M15 75 39 24Q42 19 48 23L57 27 39 61 58 51 69 56 54 80Q51 85 44 83Z" fill="url(#lsSilver)" stroke="#f9fcff" stroke-width="1.2"/><path d="M52 68 67 38Q69 33 75 36L88 42 80 59 67 54 62 66 78 62 87 69 77 82Q74 86 68 83Z" fill="url(#lsSilver)" stroke="#f9fcff" stroke-width="1.2"/><path d="M12 23Q25 7 47 9" fill="none" stroke="#fff" stroke-width="1.2" opacity=".75"/></svg></div><div class="stream-track-info"><strong id="streamTitle">Choisis une instrumentale</strong><span id="streamSubtitle">Le Sroul · Instrumentals</span></div></div>
+  <div class="stream-track"><div class="stream-art" id="streamArt" aria-label="Logo Le Sroul"><span class="ls-glass-mark">LS</span></div><div class="stream-track-info"><strong id="streamTitle">Choisis une instrumentale</strong><span id="streamSubtitle">Le Sroul · Instrumentals</span></div></div>
   <div class="stream-controls" aria-label="Commandes de lecture">
    <button type="button" id="streamPrev" aria-label="Instrumentale précédente" title="Précédente">⏮</button>
    <button type="button" id="streamPlay" class="stream-main-play" aria-label="Lire" title="Lire">▶</button>
@@ -285,3 +285,8 @@ body{padding-bottom:96px}
 })();
 </script>
 </body></html>
+<style>
+/* Le Sroul — monogramme LS en verre */
+.stream-art{display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.stream-art .ls-glass-mark{display:block;font-family:Arial,Helvetica,sans-serif;font-size:clamp(25px,5vw,39px);font-weight:900;font-style:italic;letter-spacing:-.12em;padding-right:.12em;line-height:1;color:#dce8ff;background:linear-gradient(145deg,#ffffff 0%,#9eb8ee 18%,#111827 35%,#f8fbff 48%,#6a9dff 60%,#f1b7dc 73%,#f8fbff 86%,#7186b6 100%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;-webkit-text-stroke:.55px rgba(239,246,255,.85);filter:drop-shadow(0 0 2px rgba(108,167,255,.95)) drop-shadow(0 0 7px rgba(164,119,255,.35));}
+</style>
